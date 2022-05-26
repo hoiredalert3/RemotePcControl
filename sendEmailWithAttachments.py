@@ -10,7 +10,7 @@ class Mail:
         self.sender_mail = "controlcomputer20TN@gmail.com"
         self.password = "1!2@3#4$"
 
-    def send(self, emails, subject, content):
+    def sendMailWithContent(self, emails, subject, content):
         ssl_context = ssl.create_default_context()
         service = smtplib.SMTP_SSL(self.smtp_server_domain_name, self.port, context=ssl_context)
         service.login(self.sender_mail, self.password)
@@ -30,22 +30,22 @@ class Mail:
         for file_name in attachment_names:
             with open(file_name, 'rb') as f:
                 data = f.read()
-                name = f.name #Attribute chu khong phai method
+                name = f.name
                 msg.add_attachment(data, maintype='application', subtype='octet-stream', filename=name)
 
         with smtplib.SMTP_SSL('smtp.gmail.com', 465) as service:
             service.login(self.sender_mail, self.password)
             service.send_message(msg)
+            service.quit()
 
 
 
+# if __name__ == '__main__':
+#     mails = input("Enter emails: ").split()
+#     subject = input("Enter subject: ")
+#     content = input("Enter content: ")
 
-if __name__ == '__main__':
-    mails = input("Enter emails: ").split()
-    subject = input("Enter subject: ")
-    content = input("Enter content: ")
-
-    mail = Mail()
-    #mail.send(mails, subject, content)
-    attachments = os.listdir()
-    mail.sendMailWithAttach(mails, subject, content, attachments)
+#     mail = Mail()
+#     #mail.send(mails, subject, content)
+#     attachments = os.listdir()
+#     mail.sendMailWithAttach(mails, subject, content, attachments)
