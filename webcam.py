@@ -50,3 +50,4 @@ if __name__ == '__main__':
     record_webcam(capture_duration = 5)
     print('Video exported to video/output.avi')
     show_video('video/output.avi')
+    
