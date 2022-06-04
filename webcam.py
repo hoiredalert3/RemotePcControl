@@ -8,8 +8,9 @@ def record_webcam(capture_duration):
     frame_width = int(cap.get(3))
     frame_height = int(cap.get(4))
     fps = 30
+    fourcc = cv2.VideoWriter_fourcc(*'mp4v')
 
-    out = cv2.VideoWriter('video/output.avi', cv2.VideoWriter_fourcc('M','J','P','G'), fps, (frame_width,frame_height))
+    out = cv2.VideoWriter('video/output.mp4', fourcc, fps, (frame_width,frame_height))
 
     start_time = time.time()
     while(time.time() - start_time <= capture_duration):
@@ -48,6 +49,6 @@ def show_video(video_path):
 
 if __name__ == '__main__':
     record_webcam(capture_duration = 5)
-    print('Video exported to video/output.avi')
-    show_video('video/output.avi')
+    print('Video exported to video/output.mp4')
+    show_video('video/output.mp4')
     
